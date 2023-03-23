@@ -15,36 +15,41 @@ start_btn.onclick = function () {
   if (start_btn.innerText === "STOP") {
       clearInterval(intervalId); //setInterval이 반환한 id를 인자로 넣으면 그 id를 가진 setInterval이 동작이 멈춘다.
       start_btn.innerText = "START";
-      lapse_btn.innerText = "RESET"
+      start_btn.style.backgroundColor = "#fde485"
+      lapse_btn.innerText = "RESET";
+      lapse_btn.style.backgroundColor = "#b5cdb5";
   } else if (start_btn.innerText === "START") {
       clearInterval(intervalId);  //start 두번 클릭시 id가 겹치는 현상을 방지
       intervalId = setInterval(startTimer, 10);
       start_btn.innerText = "STOP";
+      start_btn.style.backgroundColor = "#ff9648";
       lapse_btn.innerText = "LAPSE";
+      lapse_btn.style.backgroundColor = "#318a9d";
   }
 }
 
 lapse_btn.onclick = function () {
   if (lapse_btn.innerText === "LAPSE") {
-    const li = document.createElement("li")
-    li.setAttribute('id', hour + " : " + min + " : " + sec + " : " + tenMillisec);
-    const textNode = document.createTextNode(lapse_num + "  " + hour + " : " + min + " : " + sec + " : " + tenMillisec);
-    li.appendChild(textNode);
-    document.getElementById("lapse_record").appendChild(li);
-    lapse_num++;
-} else if (lapse_btn.innerText === "RESET") {
-    clearInterval(intervalId);  
-    hour = 0;
-    min = 0;
-    sec = 0;
-    tenMillisec = 0;
-    appendHour.textContent = "00";
-    appendMin.textContent = "00";
-    appendSec.textContent = "00";
-    appendTens.textContent = "00";
-    document.getElementById("lapse_record").textContent = "";
-    lapse_num = 1
-}
+      const table = document.getElementById("lapse_table");
+      const newRow = table.insertRow();
+      newRow.insertCell(0).innerText = lapse_num;
+      newRow.insertCell(1).innerText = appendHour.textContent + " : " + appendMin.textContent + " : " + appendSec.textContent + " : " + appendTens.textContent;
+      document.getElementById("lapse_record").style.visibility = "visible";
+      lapse_num++;
+    } else if (lapse_btn.innerText === "RESET") {
+      clearInterval(intervalId);  
+      hour = 0;
+      min = 0;
+      sec = 0;
+      tenMillisec = 0;
+      appendHour.textContent = "00";
+      appendMin.textContent = "00";
+      appendSec.textContent = "00";
+      appendTens.textContent = "00";
+      document.getElementById("lapse_record").style.visibility = "hidden";
+      document.getElementById("lapse_record").textContent = "";
+      lapse_num = 1
+  }
 }
 
 

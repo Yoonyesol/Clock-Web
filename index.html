@@ -2,30 +2,34 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Clockck - 스톱워치</title>
+    <title>Clockck - StopWatch</title>
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <header>
-      <h2>Clockck - 스톱워치</h2>
+      <h2>Online StopWatch</h2>
     </header>
     <div class="container" align="center">
-      <div class="mainContainer">
-        <h1>
-          <span id="hour">00</span>:<span id="min">00</span>:<span id="sec"
-            >00</span
-          >:<span id="tenMillisec">00</span>
-        </h1>
-        <button id="startBtn">START</button>
-        <button id="lapseBtn">LAPSE</button>
-        </div>
-        <div id="lapse_record">랩스</div>
+      <h1>
+        <span id="hour">00</span>:<span id="min">00</span>:<span id="sec"
+          >00</span
+        ><span id="tenMillisec">00</span>
+      </h1>
+      <button id="startBtn" style="background-color: #fde485">START</button>
+      <button id="lapseBtn" style="background-color: #b5cdb5">LAPSE</button>
+      <div id="lapse_record">
+        <table id="lapse_table" style="border-spacing: 20px">
+          <tr>
+            <th>#</th>
+            <th>LAP TIME</th>
+          </tr>
+        </table>
       </div>
-
-      <div id="animation" style="">애니메이션</div>
+      <div class="ads"></div>
     </div>
-    <div id="ad" style="height: 10em">광고영역</div>
-    <footer>clokck</footer>
+    <footer>
+      <div class="contact"><span>contact </span>| timeqlife © 2023</div>
+    </footer>
     <script type="text/javascript" src="stopwatch.js"></script>
   </body>
 </html>
