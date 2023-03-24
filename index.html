@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <!-- 반응형 웹을 적용하기 위해 반드시 필요한 meta viewport 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Clockck - StopWatch</title>
     <link href="style.css" rel="stylesheet" />
   </head>
@@ -10,15 +12,15 @@
       <h2>Online StopWatch</h2>
     </header>
     <div class="container" align="center">
-      <h1>
+      <div id="stopwatch_main">
         <span id="hour">00</span>:<span id="min">00</span>:<span id="sec"
           >00</span
         ><span id="tenMillisec">00</span>
-      </h1>
+      </div>
       <button id="startBtn" style="background-color: #fde485">START</button>
       <button id="lapseBtn" style="background-color: #b5cdb5">LAPSE</button>
       <div id="lapse_record">
-        <table id="lapse_table" style="border-spacing: 20px">
+        <table id="lapse_table">
           <tr>
             <th>#</th>
             <th>LAP TIME</th>
@@ -28,7 +30,9 @@
       <div class="ads"></div>
     </div>
     <footer>
-      <div class="contact"><span>contact </span>| timeqlife © 2023</div>
+      <div id="footer_content">
+        <span>timeqlife ©2023</span>
+      </div>
     </footer>
     <script type="text/javascript" src="stopwatch.js"></script>
   </body>
