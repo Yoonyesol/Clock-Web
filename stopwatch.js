@@ -8,6 +8,7 @@ const appendSec = document.getElementById("sec");
 const appendTens = document.getElementById("tenMillisec");
 const start_btn = document.getElementById("startBtn");
 const lapse_btn = document.getElementById("lapseBtn");
+const tool = document.getElementById("tools");
 let intervalId;
 let lapse_num = 1;
 
@@ -76,5 +77,25 @@ function startTimer() {
     min = 0;
     appendMin.textContent = "00";
   }
-
 }
+
+const modal = document.querySelector('.modal');
+const btnOpenPopup = document.querySelector('#tools');
+btnOpenPopup.addEventListener('click', () => {
+  modal.classList.toggle('show');
+});
+
+modal.addEventListener('click', (event) => {
+  if (event.target === modal) {
+      modal.classList.toggle('show');
+    }
+});
+  
+const hideCheck = document.querySelector('#hide');
+hideCheck.addEventListener('change', () => {
+  if (hideCheck.checked) {
+    appendTens.style.display = 'none';
+  } else {
+    appendTens.style.display = 'block';
+  }
+});

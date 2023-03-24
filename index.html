@@ -6,12 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Clockck - StopWatch</title>
     <link href="style.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/8351000410.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
+      <div id="nav"><i class="fa-solid fa-bars"></i></div>
       <h2>Online StopWatch</h2>
+      <div id="tools"><i class="fas fa-solid fa-gear"></i></div>
     </header>
     <div class="container" align="center">
+      <div class="modal">
+        <div class="modal_body">
+          <input type="checkbox" id="hide" />
+          <label> Hide milliseconds</label>
+        </div>
+      </div>
       <div id="stopwatch_main">
         <span id="hour">00</span>:<span id="min">00</span>:<span id="sec"
           >00</span
@@ -23,7 +35,7 @@
         <table id="lapse_table">
           <tr>
             <th>#</th>
-            <th>LAP TIME</th>
+            <th>Total Time</th>
           </tr>
         </table>
       </div>
