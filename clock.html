@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 반응형 웹을 적용하기 위해 반드시 필요한 meta viewport 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>timeqlife - StopWatch</title>
+    <link href="style.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/8351000410.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav role="navigation">
+        <ul id="main-menu">
+          <li>
+            <i class="fas fa-solid fa-bars"></i>
+            <ul id="sub-menu">
+              <li>
+                <a href="./stopwatch.html" aria-label="subemnu">StopWatch</a>
+              </li>
+              <li><a href="#" aria-label="subemnu">submenu</a></li>
+              <li><a href="#" aria-label="subemnu">submenu</a></li>
+              <li><a href="#" aria-label="subemnu">submenu</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <h2>Online Clock</h2>
+      <div id="setting">
+        <i class="fas fa-solid fa-gear"></i>
+      </div>
+    </header>
+    <div class="container" align="center">
+      <div class="modal">
+        <div class="modal_body">
+          <div class="setting_name">SETTING</div>
+          <div class="check2" style="display: flex">
+            <label style="font-size: 17px">Hide Milliseconds</label>
+            <input
+              type="checkbox"
+              id="hide_modal"
+              style="zoom: 1.5; margin-left: auto"
+            />
+          </div>
+          <div class="check3" style="display: flex">
+            <label style="font-size: 17px">Dark Mode</label>
+            <input
+              type="checkbox"
+              id="darkmode"
+              style="zoom: 1.5; margin-left: auto"
+            />
+          </div>
+          <div class="close">
+            <button
+              id="close_modal_btn"
+              style="
+                height: 35px;
+                width: 90%;
+                background-color: #b5cdb5;
+                font-weight: 400;
+              "
+            >
+              CLOSE
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="stopwatch_main">
+        <div id="current_time"></div>
+      </div>
+      <div id="lap_record"></div>
+      <div class="tools"></div>
+    </div>
+    <footer>
+      <div id="footer_content">
+        <span>timeqlife ©2023</span>
+      </div>
+    </footer>
+    <script type="text/javascript" src="time.js"></script>
+  </body>
+</html>

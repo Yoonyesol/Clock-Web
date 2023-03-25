@@ -1,20 +1,3 @@
-const clock = document.getElementById("current_time");
-function setClock() {
-  let today = new Date();
-  let curentHours = today.getHours(); //시
-  let curentMinutes = today.getMinutes();  // 분
-  let curentSeconds = today.getSeconds();  // 초
-  clock.textContent = modifyTime(curentHours) + ':' + modifyTime(curentMinutes) + ':' + modifyTime(curentSeconds);
-}
-//한자리수일 때 보정
-function modifyTime(time) {
-  return parseInt(time) < 10 ? "0" + time : time;
-}
-window.onload = function(){
-  setClock();
-  setInterval(setClock, 1000); //1초마다 setClock 함수 실행
-}
-
 let hour = 0;
 let min = 0;
 let sec = 0;
@@ -25,7 +8,7 @@ const appendSec = document.getElementById("sec");
 const appendTens = document.getElementById("tenMillisec");
 const start_btn = document.getElementById("startBtn");
 const lap_btn = document.getElementById("lapBtn");
-const tool = document.getElementById("tools");
+const setting = document.getElementById("setting");
 let intervalId;
 let lap_num = 1;
 
@@ -43,7 +26,7 @@ start_btn.onclick = function () {
       start_btn.innerText = "STOP";
       start_btn.style.backgroundColor = "#ff9648";
       lap_btn.innerText = "LAP";
-      lap_btn.style.backgroundColor = "#318a9d";
+      lap_btn.style.backgroundColor = "#318a9d";  
   }
 }
 
@@ -76,6 +59,7 @@ lap_btn.onclick = function () {
 
 // 10ms마다 시간에 대한 숫자가 증가한다
 function startTimer() {
+  let titleAppend = '';
   tenMillisec++;
   appendTens.textContent = modifyTime(tenMillisec);
   if(tenMillisec > 99) {
@@ -90,21 +74,25 @@ function startTimer() {
     sec = 0;
     appendSec.textContent = "00";
   }
-  if(min > 59) {
+  if (min <= 59) {
+    titleAppend = modifyTime(min) + ":" + modifyTime(sec);
+  } else if(min > 59) {
     hour++;
     appendMin.textContent = modifyTime(hour);
     min = 0;
     appendMin.textContent = "00";
+    titleAppend = modifyTime(hour) + ":" + modifyTime(min) + ":" + modifyTime(sec);
   }
+  document.title = titleAppend + " - Clockck";
 }
-  
+
 //시간 숨김 기능
 const hideClockCheck = document.getElementById('hide_clock');
 hideClockCheck.addEventListener('change', () => {
   if (hideClockCheck.checked) {
-    clock.style.display = 'none';
+    stopwatch_clock.style.display = 'none';
   } else {
-    clock.style.display = 'block';
+    stopwatch_clock.style.display = 'block';
   }
 });
 
@@ -120,9 +108,8 @@ hideModalCheck.addEventListener('change', () => {
 
 //모달 조작
 const modal = document.querySelector('.modal');
-const tools = document.getElementById('tools');
 const closeBtn = document.getElementById('close_modal_btn');
-tools.addEventListener('click', () => {
+setting.addEventListener('click', () => {
   modal.classList.toggle('show');
 });
 
@@ -140,7 +127,6 @@ closeBtn.addEventListener('click', (event) => {
 //다크모드
 const body = document.querySelector('body');
 const darkmode = document.getElementById('darkmode');
-const lTable = document.querySelector('table');
 darkmode.addEventListener('change', () => {
   if(darkmode.checked){  //다크모드로 전환
     body.style.backgroundColor = "#2a283f";  //배경색 변경
@@ -150,5 +136,6 @@ darkmode.addEventListener('change', () => {
   } else { //라이트모드
     body.style.backgroundColor = 'rgb(250, 250, 239)';
     body.style.color = 'black';
+    document.querySelector('table').style.borderTopColor = "#444444";
   }
 });

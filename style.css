@@ -37,9 +37,49 @@ header{
   height: 70px;
 }
 
-header #nav, #tools{
+header i {
+  color: #829194;
   margin:0 20px;
   font-size: 22px;
+  cursor: pointer;
+}
+
+ul, li {
+  color:#444444;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#sub-menu {
+  position: absolute;
+  background: #fde485;
+  border-radius: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in; /* 나타나는 속도 */
+  z-index: 1; /* hover 시 다른 배경을 덮도록 함. 이 설정이 있어야 드롭메뉴가 빨리 꺼지지 않음  */
+}
+
+#sub-menu > li {
+  padding: 15px 40px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+#sub-menu > li >  a {
+  color: black;
+  text-decoration: none;
+}
+
+/* 부모UL요소에 마우스오버할 때 자손 UL요소가 나타난다. */
+#main-menu > li:hover #sub-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+#sub-menu > li >  a:hover {
+ text-decoration: underline;
+ cursor: pointer;
 }
 
 .modal {
@@ -74,12 +114,12 @@ header #nav, #tools{
 }
 
 .container {
-  padding: 0 30px;
+  padding: 0 20px;
   /* min-width: 320px;
   height : 100%; */
   min-height: 100%;
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 #stopwatch_main{
@@ -129,7 +169,7 @@ button:active{
 }
 
 table {
-  border-top: 2px solid #444444;
+  border-top: 1.8px solid #444444;
   border-collapse: collapse;  /*중간에 표 끊기는 것 방지*/
 }
 
@@ -138,8 +178,12 @@ th, td {
   padding: 7px 30px;
 }
 
-.ads{
-  height: 150px;
+.tools{
+  height: 200px;
+  /* padding: 20px;
+  background-color: #e0ecee;
+  border-radius: 13px;
+  margin-bottom: 15px; */
 }
 
 footer{
