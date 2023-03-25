@@ -15,17 +15,35 @@
     <header>
       <div id="nav"><i class="fa-solid fa-bars"></i></div>
       <h2>Online StopWatch</h2>
-      <div id="tools"><i class="fas fa-solid fa-gear"></i></div>
+      <div id="tools">
+        <i style="cursor: pointer" class="fas fa-solid fa-gear"></i>
+      </div>
     </header>
     <div class="container" align="center">
       <div class="modal">
         <div class="modal_body">
           <div class="setting_name">SETTING</div>
           <div class="check1" style="display: flex">
-            <label style="font-size: 17px">Hide milliseconds</label>
+            <label style="font-size: 17px">Hide Current Time</label>
             <input
               type="checkbox"
-              id="hide"
+              id="hide_clock"
+              style="zoom: 1.5; margin-left: auto"
+            />
+          </div>
+          <div class="check2" style="display: flex">
+            <label style="font-size: 17px">Hide Milliseconds</label>
+            <input
+              type="checkbox"
+              id="hide_modal"
+              style="zoom: 1.5; margin-left: auto"
+            />
+          </div>
+          <div class="check3" style="display: flex">
+            <label style="font-size: 17px">Dark Mode</label>
+            <input
+              type="checkbox"
+              id="darkmode"
               style="zoom: 1.5; margin-left: auto"
             />
           </div>
@@ -45,6 +63,7 @@
         </div>
       </div>
       <div id="stopwatch_main">
+        <div id="current_time"></div>
         <span id="hour">00</span>:<span id="min">00</span>:<span id="sec"
           >00</span
         >

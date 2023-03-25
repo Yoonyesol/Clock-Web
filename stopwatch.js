@@ -1,3 +1,20 @@
+const clock = document.getElementById("current_time");
+function setClock() {
+  let today = new Date();
+  let curentHours = today.getHours(); //시
+  let curentMinutes = today.getMinutes();  // 분
+  let curentSeconds = today.getSeconds();  // 초
+  clock.textContent = modifyTime(curentHours) + ':' + modifyTime(curentMinutes) + ':' + modifyTime(curentSeconds);
+}
+//한자리수일 때 보정
+function modifyTime(time) {
+  return parseInt(time) < 10 ? "0" + time : time;
+}
+window.onload = function(){
+  setClock();
+  setInterval(setClock, 1000); //1초마다 setClock 함수 실행
+}
+
 let hour = 0;
 let min = 0;
 let sec = 0;
@@ -42,7 +59,7 @@ lap_btn.onclick = function () {
     } else if (lap_btn.innerText === "RESET") {
       clearInterval(intervalId);
       document.getElementById("lap_record").style.visibility = "hidden";
-      for (let i = 0; i < lap_num; i++){
+      for (let i = 0; i < lap_num - 1; i++){
         table.deleteRow(-1);
       }
       hour = 0;
@@ -60,26 +77,46 @@ lap_btn.onclick = function () {
 // 10ms마다 시간에 대한 숫자가 증가한다
 function startTimer() {
   tenMillisec++;
-  appendTens.textContent = tenMillisec > 9 ? tenMillisec : '0' + tenMillisec;
+  appendTens.textContent = modifyTime(tenMillisec);
   if(tenMillisec > 99) {
     sec++;
-    appendSec.textContent = sec > 9 ? sec : '0' + sec;
+    appendSec.textContent = modifyTime(sec);
     tenMillisec = 0;
     appendTens.textContent = "00";
   }
   if(sec > 59) {
     min++;
-    appendMin.textContent = min > 9 ? min : '0' + min;
+    appendMin.textContent = modifyTime(min);
     sec = 0;
     appendSec.textContent = "00";
   }
   if(min > 59) {
     hour++;
-    appendMin.textContent = hour > 9 ? hour : '0' + hour;
+    appendMin.textContent = modifyTime(hour);
     min = 0;
     appendMin.textContent = "00";
   }
 }
+  
+//시간 숨김 기능
+const hideClockCheck = document.getElementById('hide_clock');
+hideClockCheck.addEventListener('change', () => {
+  if (hideClockCheck.checked) {
+    clock.style.display = 'none';
+  } else {
+    clock.style.display = 'block';
+  }
+});
+
+//밀리초 숨김 기능
+const hideModalCheck = document.getElementById('hide_modal');
+hideModalCheck.addEventListener('change', () => {
+  if (hideModalCheck.checked) {
+    appendTens.style.display = 'none';
+  } else {
+    appendTens.style.display = 'block';
+  }
+});
 
 //모달 조작
 const modal = document.querySelector('.modal');
@@ -99,13 +136,19 @@ modal.addEventListener('click', (event) => {
 closeBtn.addEventListener('click', (event) => {
   modal.classList.toggle('show');
 })
-  
-//밀리초 숨김 기능
-const hideCheck = document.getElementById('hide');
-hideCheck.addEventListener('change', () => {
-  if (hideCheck.checked) {
-    appendTens.style.display = 'none';
-  } else {
-    appendTens.style.display = 'block';
+
+//다크모드
+const body = document.querySelector('body');
+const darkmode = document.getElementById('darkmode');
+const lTable = document.querySelector('table');
+darkmode.addEventListener('change', () => {
+  if(darkmode.checked){  //다크모드로 전환
+    body.style.backgroundColor = "#2a283f";  //배경색 변경
+    body.style.color = 'white'; //css가 적용되지 않은 기본 텍스트 색상 변경
+    modal.style.color = "black";
+    document.querySelector('table').style.borderTopColor = "white";
+  } else { //라이트모드
+    body.style.backgroundColor = 'rgb(250, 250, 239)';
+    body.style.color = 'black';
   }
 });
