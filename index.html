@@ -20,20 +20,41 @@
     <div class="container" align="center">
       <div class="modal">
         <div class="modal_body">
-          <input type="checkbox" id="hide" />
-          <label> Hide milliseconds</label>
+          <div class="setting_name">SETTING</div>
+          <div class="check1" style="display: flex">
+            <label style="font-size: 17px">Hide milliseconds</label>
+            <input
+              type="checkbox"
+              id="hide"
+              style="zoom: 1.5; margin-left: auto"
+            />
+          </div>
+          <div class="close">
+            <button
+              id="close_modal_btn"
+              style="
+                height: 35px;
+                width: 90%;
+                background-color: #b5cdb5;
+                font-weight: 400;
+              "
+            >
+              close
+            </button>
+          </div>
         </div>
       </div>
       <div id="stopwatch_main">
         <span id="hour">00</span>:<span id="min">00</span>:<span id="sec"
           >00</span
-        ><span id="tenMillisec">00</span>
+        >
+        <div><span id="tenMillisec">00</span></div>
       </div>
       <button id="startBtn" style="background-color: #fde485">START</button>
-      <button id="lapseBtn" style="background-color: #b5cdb5">LAPSE</button>
-      <div id="lapse_record">
-        <table id="lapse_table">
-          <tr>
+      <button id="lapBtn" style="background-color: #b5cdb5">LAP</button>
+      <div id="lap_record">
+        <table id="lap_table">
+          <tr class="table_header">
             <th>#</th>
             <th>Total Time</th>
           </tr>

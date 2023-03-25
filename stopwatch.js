@@ -7,38 +7,44 @@ const appendMin = document.getElementById("min");
 const appendSec = document.getElementById("sec");
 const appendTens = document.getElementById("tenMillisec");
 const start_btn = document.getElementById("startBtn");
-const lapse_btn = document.getElementById("lapseBtn");
+const lap_btn = document.getElementById("lapBtn");
 const tool = document.getElementById("tools");
 let intervalId;
-let lapse_num = 1;
+let lap_num = 1;
 
+//start, stop
 start_btn.onclick = function () {
   if (start_btn.innerText === "STOP") {
       clearInterval(intervalId); //setInterval이 반환한 id를 인자로 넣으면 그 id를 가진 setInterval이 동작이 멈춘다.
       start_btn.innerText = "START";
       start_btn.style.backgroundColor = "#fde485"
-      lapse_btn.innerText = "RESET";
-      lapse_btn.style.backgroundColor = "#b5cdb5";
+      lap_btn.innerText = "RESET";
+      lap_btn.style.backgroundColor = "#b5cdb5";
   } else if (start_btn.innerText === "START") {
       clearInterval(intervalId);  //start 두번 클릭시 id가 겹치는 현상을 방지
       intervalId = setInterval(startTimer, 10);
       start_btn.innerText = "STOP";
       start_btn.style.backgroundColor = "#ff9648";
-      lapse_btn.innerText = "LAPSE";
-      lapse_btn.style.backgroundColor = "#318a9d";
+      lap_btn.innerText = "LAP";
+      lap_btn.style.backgroundColor = "#318a9d";
   }
 }
 
-lapse_btn.onclick = function () {
-  if (lapse_btn.innerText === "LAPSE") {
-      const table = document.getElementById("lapse_table");
+//lap, reset
+const table = document.getElementById("lap_table");
+lap_btn.onclick = function () {
+  if (lap_btn.innerText === "LAP") {
       const newRow = table.insertRow();
-      newRow.insertCell(0).innerText = lapse_num;
+      newRow.insertCell(0).innerText = lap_num;
       newRow.insertCell(1).innerText = appendHour.textContent + " : " + appendMin.textContent + " : " + appendSec.textContent + " : " + appendTens.textContent;
-      document.getElementById("lapse_record").style.visibility = "visible";
-      lapse_num++;
-    } else if (lapse_btn.innerText === "RESET") {
-      clearInterval(intervalId);  
+      document.getElementById("lap_record").style.visibility = "visible";
+      lap_num++;
+    } else if (lap_btn.innerText === "RESET") {
+      clearInterval(intervalId);
+      document.getElementById("lap_record").style.visibility = "hidden";
+      for (let i = 0; i < lap_num; i++){
+        table.deleteRow(-1);
+      }
       hour = 0;
       min = 0;
       sec = 0;
@@ -47,13 +53,9 @@ lapse_btn.onclick = function () {
       appendMin.textContent = "00";
       appendSec.textContent = "00";
       appendTens.textContent = "00";
-      document.getElementById("lapse_record").style.visibility = "hidden";
-      document.getElementById("lapse_record").textContent = "";
-      lapse_num = 1
+      lap_num = 1
   }
 }
-
-
 
 // 10ms마다 시간에 대한 숫자가 증가한다
 function startTimer() {
@@ -79,9 +81,11 @@ function startTimer() {
   }
 }
 
+//모달 조작
 const modal = document.querySelector('.modal');
-const btnOpenPopup = document.querySelector('#tools');
-btnOpenPopup.addEventListener('click', () => {
+const tools = document.getElementById('tools');
+const closeBtn = document.getElementById('close_modal_btn');
+tools.addEventListener('click', () => {
   modal.classList.toggle('show');
 });
 
@@ -90,8 +94,14 @@ modal.addEventListener('click', (event) => {
       modal.classList.toggle('show');
     }
 });
+
+//모달 닫기 버튼
+closeBtn.addEventListener('click', (event) => {
+  modal.classList.toggle('show');
+})
   
-const hideCheck = document.querySelector('#hide');
+//밀리초 숨김 기능
+const hideCheck = document.getElementById('hide');
 hideCheck.addEventListener('change', () => {
   if (hideCheck.checked) {
     appendTens.style.display = 'none';
