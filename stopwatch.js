@@ -7,40 +7,46 @@ const appendMin = document.getElementById("min");
 const appendSec = document.getElementById("sec");
 const appendTens = document.getElementById("tenMillisec");
 const start_btn = document.getElementById("startBtn");
+const stop_btn = document.getElementById("stopBtn");
 const lap_btn = document.getElementById("lapBtn");
+const reset_btn = document.getElementById("resetBtn");
 const setting = document.getElementById("setting");
 let intervalId;
 let lap_num = 1;
 
-//start, stop
+//start
 start_btn.onclick = function () {
-  if (start_btn.innerText === "STOP") {
-      clearInterval(intervalId); //setInterval이 반환한 id를 인자로 넣으면 그 id를 가진 setInterval이 동작이 멈춘다.
-      start_btn.innerText = "START";
-      start_btn.style.backgroundColor = "#fde485"
-      lap_btn.innerText = "RESET";
-      lap_btn.style.backgroundColor = "#b5cdb5";
-  } else if (start_btn.innerText === "START") {
-      clearInterval(intervalId);  //start 두번 클릭시 id가 겹치는 현상을 방지
-      intervalId = setInterval(startTimer, 10);
-      start_btn.innerText = "STOP";
-      start_btn.style.backgroundColor = "#ff9648";
-      lap_btn.innerText = "LAP";
-      lap_btn.style.backgroundColor = "#318a9d";  
-  }
+  clearInterval(intervalId);  //start 두번 클릭시 id가 겹치는 현상을 방지
+  intervalId = setInterval(startTimer, 10);
+  start_btn.style.display = "none";
+  stop_btn.style.display = "";
+  reset_btn.style.display = "none";
+  lap_btn.style.display = "";
+  lap_btn.style.backgroundColor = "#318a9d";
+}
+
+//stop
+stop_btn.onclick = function () {
+  clearInterval(intervalId); //setInterval이 반환한 id를 인자로 넣으면 그 id를 가진 setInterval이 동작이 멈춘다.
+  stop_btn.style.display = "none";
+  start_btn.style.display = "";
+  lap_btn.style.display = "none";
+  reset_btn.style.display = "";
+  reset_btn.style.backgroundColor = "#b5cdb5";
 }
 
 //lap, reset
 const table = document.getElementById("lap_table");
 lap_btn.onclick = function () {
-  if (lap_btn.innerText === "LAP") {
-      const newRow = table.insertRow();
-      newRow.insertCell(0).innerText = lap_num;
-      newRow.insertCell(1).innerText = appendHour.textContent + " : " + appendMin.textContent + " : " + appendSec.textContent + " : " + appendTens.textContent;
-      document.getElementById("lap_record").style.visibility = "visible";
-      lap_num++;
-    } else if (lap_btn.innerText === "RESET") {
-      clearInterval(intervalId);
+  const newRow = table.insertRow();
+  newRow.insertCell(0).innerText = lap_num;
+  newRow.insertCell(1).innerText = appendHour.textContent + " : " + appendMin.textContent + " : " + appendSec.textContent + " : " + appendTens.textContent;
+  document.getElementById("lap_record").style.visibility = "visible";
+  lap_num++;
+}
+
+reset_btn.onclick = function () {
+  clearInterval(intervalId);
       document.getElementById("lap_record").style.visibility = "hidden";
       for (let i = 0; i < lap_num - 1; i++){
         table.deleteRow(-1);
@@ -54,7 +60,6 @@ lap_btn.onclick = function () {
       appendSec.textContent = "00";
       appendTens.textContent = "00";
       lap_num = 1
-  }
 }
 
 // 10ms마다 시간에 대한 숫자가 증가한다
@@ -83,7 +88,7 @@ function startTimer() {
     appendMin.textContent = "00";
     titleAppend = modifyTime(hour) + ":" + modifyTime(min) + ":" + modifyTime(sec);
   }
-  document.title = titleAppend + " - Clockck";
+  document.title = titleAppend + " - StopWatch";
 }
 
 //시간 숨김 기능
@@ -106,36 +111,25 @@ hideModalCheck.addEventListener('change', () => {
   }
 });
 
-//모달 조작
-const modal = document.querySelector('.modal');
-const closeBtn = document.getElementById('close_modal_btn');
-setting.addEventListener('click', () => {
-  modal.classList.toggle('show');
-});
-
-modal.addEventListener('click', (event) => {
-  if (event.target === modal) {
-      modal.classList.toggle('show');
+//전체 화면
+const header = document.getElementById('header');
+const footer = document.getElementById('footer');
+const tools = document.getElementById('tools');
+const stopwatch_main = document.getElementById('stopwatch_main');
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    header.style.visibility = "hidden";
+    footer.style.visibility = "hidden";
+    tools.style.visibility = "hidden";
+    body.style.overflow='hidden';
+    document.documentElement.requestFullscreen()
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+      header.style.visibility = "visible";
+      footer.style.visibility = "visible";
+      tools.style.visibility = "visible";
+      body.style.overflow='auto';
     }
-});
-
-//모달 닫기 버튼
-closeBtn.addEventListener('click', (event) => {
-  modal.classList.toggle('show');
-})
-
-//다크모드
-const body = document.querySelector('body');
-const darkmode = document.getElementById('darkmode');
-darkmode.addEventListener('change', () => {
-  if(darkmode.checked){  //다크모드로 전환
-    body.style.backgroundColor = "#2a283f";  //배경색 변경
-    body.style.color = 'white'; //css가 적용되지 않은 기본 텍스트 색상 변경
-    modal.style.color = "black";
-    document.querySelector('table').style.borderTopColor = "white";
-  } else { //라이트모드
-    body.style.backgroundColor = 'rgb(250, 250, 239)';
-    body.style.color = 'black';
-    document.querySelector('table').style.borderTopColor = "#444444";
   }
-});
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <!-- 반응형 웹을 적용하기 위해 반드시 필요한 meta viewport 설정 -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>timeqlife - StopWatch</title>
+    <title>timeqlife - Stopwatch</title>
     <link href="style.css" rel="stylesheet" />
     <script
       src="https://kit.fontawesome.com/8351000410.js"
@@ -12,52 +12,50 @@
     ></script>
   </head>
   <body>
-    <header>
+    <header id="header">
       <nav role="navigation">
         <ul id="main-menu">
           <li>
             <i class="fas fa-solid fa-bars"></i>
+
             <ul id="sub-menu">
-              <li><a href="./clock.html" aria-label="subemnu">Clock</a></li>
-              <li><a href="#" aria-label="subemnu">submenu</a></li>
-              <li><a href="#" aria-label="subemnu">submenu</a></li>
-              <li><a href="#" aria-label="subemnu">submenu</a></li>
+              <li><a href="./index.html" aria-label="subemnu">Home</a></li>
+              <li>
+                <a href="./clock.html" aria-label="subemnu">Online Clock</a>
+              </li>
             </ul>
           </li>
         </ul>
       </nav>
-      <h2>Online StopWatch</h2>
+      <h2 data-lang="title">Online Stopwatch</h2>
       <div id="setting">
         <i class="fas fa-solid fa-gear"></i>
       </div>
     </header>
     <div class="container" align="center">
+      <div class="full_screen">
+        <i class="fas fa-duotone fa-maximize" onclick="toggleFullScreen()"></i>
+      </div>
       <div class="modal">
         <div class="modal_body">
           <div class="setting_name">SETTING</div>
           <div class="check1" style="display: flex">
-            <label style="font-size: 17px">Hide Current Time</label>
-            <input
-              type="checkbox"
-              id="hide_clock"
-              style="zoom: 1.5; margin-left: auto"
-            />
+            <label style="font-size: 17px" data-lang="HideTime"
+              >Hide Current Time</label
+            >
+            <input type="checkbox" id="hide_clock" />
           </div>
           <div class="check2" style="display: flex">
-            <label style="font-size: 17px">Hide Milliseconds</label>
-            <input
-              type="checkbox"
-              id="hide_modal"
-              style="zoom: 1.5; margin-left: auto"
-            />
+            <label style="font-size: 17px" data-lang="HideMs"
+              >Hide Milliseconds</label
+            >
+            <input type="checkbox" id="hide_modal" />
           </div>
           <div class="check3" style="display: flex">
-            <label style="font-size: 17px">Dark Mode</label>
-            <input
-              type="checkbox"
-              id="darkmode"
-              style="zoom: 1.5; margin-left: auto"
-            />
+            <label style="font-size: 17px" data-lang="DarkMode"
+              >Dark Mode</label
+            >
+            <input type="checkbox" id="darkmode" />
           </div>
           <div class="close">
             <button
@@ -81,24 +79,54 @@
         >
         <div><span id="tenMillisec">00</span></div>
       </div>
-      <button id="startBtn" style="background-color: #fde485">START</button>
-      <button id="lapBtn" style="background-color: #b5cdb5">LAP</button>
+      <div class="button_container">
+        <div>
+          <button
+            id="startBtn"
+            style="background-color: #fde485"
+            data-lang="START"
+          >
+            START
+          </button>
+          <button
+            id="stopBtn"
+            style="background-color: #ff9648; display: none"
+            data-lang="STOP"
+          >
+            STOP
+          </button>
+        </div>
+        <div>
+          <button id="lapBtn" style="background-color: #b5cdb5" data-lang="LAP">
+            LAP
+          </button>
+          <button
+            id="resetBtn"
+            style="background-color: #318a9d; display: none"
+            data-lang="RESET"
+          >
+            RESET
+          </button>
+        </div>
+      </div>
       <div id="lap_record">
         <table id="lap_table">
           <tr class="table_header">
             <th>#</th>
-            <th>Total Time</th>
+            <th data-lang="TotalTime">Total Time</th>
           </tr>
         </table>
       </div>
-      <div class="tools"></div>
+      <div id="tools"></div>
     </div>
-    <footer>
+    <footer id="footer">
       <div id="footer_content">
         <span>timeqlife ©2023</span>
       </div>
     </footer>
+    <script type="text/javascript" src="lang.js"></script>
     <script type="text/javascript" src="time.js"></script>
     <script type="text/javascript" src="stopwatch.js"></script>
+    <script type="text/javascript" src="modal.js"></script>
   </body>
 </html>
