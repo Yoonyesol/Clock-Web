@@ -9,7 +9,8 @@ const lang = {
     TotalTime: "Total Time",
     HideTime: "Hide Current Time",
     HideMs: "Hide Milliseconds",
-    DarkMode: "Dark Mode"
+    DarkMode: "Dark Mode", 
+    Discript: "The online stopwatch can be started by pressing the <b>START</b> button. Press the <b>STOP</b> button to stop the operation.</br> The lap time is recorded when the <b>LAP</b> button is pressed during the stopwatch operation.</br> Press the <b>RESET</b> button if you want to reset."
   },
   ko: {
     font: 'EarlyFontDiary',
@@ -21,7 +22,8 @@ const lang = {
     TotalTime: "전체 시간",
     HideTime: "현재 시간 숨기기",
     HideMs: "밀리초 숨기기",
-    DarkMode: "다크모드"
+    DarkMode: "다크모드",
+    Discript: "온라인 스톱워치는 <b>시작</b> 버튼을 눌러 시작할 수 있습니다. 동작을 중지하려면 <b>정지</b> 버튼을 누르세요.</br> 스톱워치 작동 중 <b>랩</b> 버튼을 누르면 랩타임이 기록됩니다.</br> 초기화를 원할 시 <b>초기화</b> 버튼을 눌러주세요."
   }, 
 };
 
@@ -46,7 +48,7 @@ function render(locale) {
   document.fontFamily = lang[locale][0];
   $lang.forEach(el => {
     const code = el.dataset.lang;
-    el.textContent = lang[locale][code];
+    el.innerHTML = lang[locale][code];
   })
 }
 

@@ -19,15 +19,18 @@ closeBtn.addEventListener('click', (event) => {
 //다크모드
 const body = document.querySelector('body');
 const darkmode = document.getElementById('darkmode');
+const container = document.getElementsByClassName('container')[0];
 darkmode.addEventListener('change', () => {
   if(darkmode.checked){  //다크모드로 전환
     body.style.backgroundColor = "#2a283f";  //배경색 변경
+    container.style.backgroundColor = "#2a283f"; 
     body.style.color = 'white'; //css가 적용되지 않은 기본 텍스트 색상 변경
     modal.style.color = "black";
     document.querySelector('table').style.borderTopColor = "white";
   } else { //라이트모드
     body.style.backgroundColor = 'rgb(250, 250, 239)';
     body.style.color = 'black';
+    container.style.backgroundColor = "rgb(250, 250, 239)"; 
     if (document.querySelector('table')) {
       document.querySelector('table').style.borderTopColor = "#444444";
     }

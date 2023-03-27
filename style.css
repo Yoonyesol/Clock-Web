@@ -1,9 +1,4 @@
 @font-face {
-  font-family: "digital";
-  src: url("./asset/font/DS-DIGIB.TTF"); 
-}
-
-@font-face {
   font-family: 'EarlyFontDiary';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EarlyFontDiary.woff2') format('woff2');
   font-weight: normal;
@@ -24,15 +19,29 @@
     font-style: normal;
 }
 
+@font-face {
+  font-family: 'SDSamliphopangche_Outline';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SLEIGothicTTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SLEIGothicTTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 *{ 
   box-sizing: border-box;  /*padding시 박스 사이즈 커지는 것 방지*/
 }
 
 html, body {
   margin: 0; /*기본 html 마진 삭제*/
-  min-height: 100%;
+  height: 100%;
   background-color: rgb(250, 250, 239);
-  font-family: 'SuseongHyejeong';
+  font-family: 'SLEIGothicTTF';
 }
 
 header{
@@ -127,12 +136,10 @@ input[type="checkbox"] {
 }
 
 .container {
-  padding: 0 20px;
-  /* min-width: 320px;
-  height : 100%; */
+  padding: 0 20px 40px 20px; /* footer 높이 */
+  /* min-width: 320px;*/
   min-height: 100%;
   position: relative;
-  padding-bottom: 20px;
 }
 
 .full_screen{
@@ -178,9 +185,8 @@ button {
   margin: 0px 15px;
   height: 50px;
   width: 110px; border: none;
-  font-family: 'SuseongHyejeong';
-  font-size: 16px;
-  font-weight: bold;
+  font-family: 'SLEIGothicTTF';
+  font-size: 17px;
   padding: 6px;
   cursor: pointer;
   border-radius: 8px;
@@ -191,8 +197,9 @@ button:active{
 }
 
 #lap_record{
+  font-size: 17px;
   visibility:hidden;
-  margin: 30px 0px;
+  margin: 40px 0;
   padding: 10px;
   height: 350px;
   width: 70%;
@@ -210,16 +217,21 @@ th, td {
   padding: 7px 30px;
 }
 
-#tools{
-  height: 200px;
-  /* padding: 20px;
-  background-color: #e0ecee;
-  border-radius: 13px;
-  margin-bottom: 15px; */
+#ads{
+  height: 100px;
+}
+
+#descript{
+  height: 100px;
+  padding: 0 10px;
+  font-size: 15px;
+  /* background-color: #e0ecee;
+  border-radius: 13px;*/
 }
 
 footer{
   position: relative;
+  bottom: 0;
   transform: translatY(-100%);
   color:rgb(82, 78, 78);
   margin: 0 auto;
@@ -234,9 +246,9 @@ footer{
   top: 10px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 800px) {
+@media screen and (min-width: 361px) and (max-width: 800px) {
   .container{
-    padding: 0 16px;
+    padding: 0 16px 40px 16px;
   }
 
   header{
@@ -272,4 +284,56 @@ footer{
     padding: 7px 10px;
   }
 
+  #ads{
+    height: 120px;
+  }
+}
+
+@media screen  and (min-width: 270px) and (max-width: 360px){
+  .container{
+    padding: 0 16px 40px 16px;
+  }
+
+  header{
+    height: 50px;
+  }
+
+  .full_screen{
+    margin: 10px 7px;
+  }
+
+  .modal_body {
+    width: 200px;
+    height: 250px;
+  }
+
+  #lap_record{
+    width: 100%;
+    height: 300px;
+  }
+
+  #current_time{
+    font-size: 20px;
+  }
+
+  #stopwatch_main > span {
+    width: 60px;
+  }
+
+  #stopwatch_main{
+    font-size: 50px;
+  }
+
+  #tenMillisec{
+    font-size: 35px;
+  }
+
+  th, td {
+    border-bottom: 1px solid rgb(221, 221, 199);
+    padding: 7px 10px;
+  }
+
+  #descript{
+    margin-bottom: 10px;
+  }
 }

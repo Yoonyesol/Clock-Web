@@ -22,7 +22,6 @@ start_btn.onclick = function () {
   stop_btn.style.display = "";
   reset_btn.style.display = "none";
   lap_btn.style.display = "";
-  lap_btn.style.backgroundColor = "#318a9d";
 }
 
 //stop
@@ -32,7 +31,6 @@ stop_btn.onclick = function () {
   start_btn.style.display = "";
   lap_btn.style.display = "none";
   reset_btn.style.display = "";
-  reset_btn.style.backgroundColor = "#b5cdb5";
 }
 
 //lap, reset
@@ -114,13 +112,13 @@ hideModalCheck.addEventListener('change', () => {
 //전체 화면
 const header = document.getElementById('header');
 const footer = document.getElementById('footer');
-const tools = document.getElementById('tools');
+const descript = document.getElementById('descript');
 const stopwatch_main = document.getElementById('stopwatch_main');
 function toggleFullScreen() {
   if (!document.fullscreenElement) {
     header.style.visibility = "hidden";
     footer.style.visibility = "hidden";
-    tools.style.visibility = "hidden";
+    descript.style.visibility = "hidden";
     body.style.overflow='hidden';
     document.documentElement.requestFullscreen()
   } else {
@@ -128,7 +126,7 @@ function toggleFullScreen() {
       document.exitFullscreen();
       header.style.visibility = "visible";
       footer.style.visibility = "visible";
-      tools.style.visibility = "visible";
+      descript.style.visibility = "visible";
       body.style.overflow='auto';
     }
   }
