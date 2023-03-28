@@ -26,7 +26,9 @@ darkmode.addEventListener('change', () => {
     container.style.backgroundColor = "#2a283f"; 
     body.style.color = 'white'; //css가 적용되지 않은 기본 텍스트 색상 변경
     modal.style.color = "black";
-    document.querySelector('table').style.borderTopColor = "white";
+    if (document.querySelector('table')) {
+      document.querySelector('table').style.borderTopColor = "white";
+    }
   } else { //라이트모드
     body.style.backgroundColor = 'rgb(250, 250, 239)';
     body.style.color = 'black';
