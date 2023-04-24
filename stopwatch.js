@@ -16,8 +16,8 @@ let lap_num = 1;
 
 //start
 start_btn.onclick = function () {
-  clearInterval(intervalId);  //start 두번 클릭시 id가 겹치는 현상을 방지
-  intervalId = setInterval(startTimer, 10);
+  window.clearInterval(intervalId);  //start 두번 클릭시 id가 겹치는 현상을 방지
+  intervalId = window.setInterval(startTimer, 10);
   start_btn.style.display = "none";
   stop_btn.style.display = "";
   reset_btn.style.display = "none";
@@ -26,7 +26,7 @@ start_btn.onclick = function () {
 
 //stop
 stop_btn.onclick = function () {
-  clearInterval(intervalId); //setInterval이 반환한 id를 인자로 넣으면 그 id를 가진 setInterval이 동작이 멈춘다.
+  window.clearInterval(intervalId); //setInterval이 반환한 id를 인자로 넣으면 그 id를 가진 setInterval이 동작이 멈춘다.
   stop_btn.style.display = "none";
   start_btn.style.display = "";
   lap_btn.style.display = "none";
@@ -44,7 +44,7 @@ lap_btn.onclick = function () {
 }
 
 reset_btn.onclick = function () {
-  clearInterval(intervalId);
+  window.clearInterval(intervalId);
       document.getElementById("lap_record").style.visibility = "hidden";
       for (let i = 0; i < lap_num - 1; i++){
         table.deleteRow(-1);
@@ -57,7 +57,8 @@ reset_btn.onclick = function () {
       appendMin.textContent = "00";
       appendSec.textContent = "00";
       appendTens.textContent = "00";
-      lap_num = 1
+  lap_num = 1
+  document.title = "timeqlife - Stopwatch";
 }
 
 // 10ms마다 시간에 대한 숫자가 증가한다
